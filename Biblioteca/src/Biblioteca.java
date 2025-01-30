@@ -43,9 +43,9 @@ class Biblioteca {
         } else {
             throw new IllegalArgumentException("Tipo di materiale non supportato.");
         }
-        materiale.codiceInterno = codice;
+        materiale.setCodiceInterno(codice);
         elencoMateriali.put(codice, materiale);
-        collocazioni.put(codice, trovaBibliotecaById(materiale.idBiblioteca));
+        collocazioni.put(codice, trovaBibliotecaById(materiale.getIdBiblioteca()));
         System.out.println("Materiale aggiunto con codice: " + codice);
     }
 

@@ -13,8 +13,11 @@ public class Rivista extends Materiale {
 
     @Override
     public String toString() {
-        return "Rivista [editore=" + editore + ", anno=" + anno + ", titolo=" + titolo + ", numeroVolume="
-                + numeroVolume + ", genere=" + genere + ", getCodiceInterno()=" + getCodiceInterno()
-                + ", isDisponibile()=" + isDisponibile() + "]";
+        return "Rivista [editore=" + editore + ", anno=" + anno + ", numeroVolume=" + numeroVolume
+                + ", getCodiceInterno()=" + getCodiceInterno() + ", isDisponibile()=" + isDisponibile()
+                + ", getTitolo()=" + getTitolo() + ", getGenere()=" + getGenere() + ", getIdBiblioteca()="
+                + getIdBiblioteca() + "]";
     }
+
+
 }

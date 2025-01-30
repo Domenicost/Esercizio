@@ -14,8 +14,11 @@ class Libro extends Materiale {
 
     @Override
     public String toString() {
-        return "Libro [autore=" + autore + ", editore=" + editore + ", titolo=" + titolo + ", isbn=" + isbn
-                + ", genere=" + genere + ", numeroPagine=" + numeroPagine + ", getCodiceInterno()=" + getCodiceInterno()
-                + ", isDisponibile()=" + isDisponibile() + "]";
+        return "Libro [autore=" + autore + ", editore=" + editore + ", isbn=" + isbn + ", numeroPagine=" + numeroPagine
+                + ", getCodiceInterno()=" + getCodiceInterno() + ", isDisponibile()=" + isDisponibile()
+                + ", getTitolo()=" + getTitolo() + ", getGenere()=" + getGenere() + ", getIdBiblioteca()="
+                + getIdBiblioteca() + "]";
     }
+
+
 }
