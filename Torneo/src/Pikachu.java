@@ -9,8 +9,8 @@ class Pikachu extends Pokemon implements IEvolvibile, IAttaccoSpeciale {
     @Override
     public void attacca(Pokemon avversario) {
         int danno = puntiAttacco + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override
@@ -23,6 +23,7 @@ class Pikachu extends Pokemon implements IEvolvibile, IAttaccoSpeciale {
                     puntiDifesa += 20;
                     puntiSalute += 20;
                     System.out.println("Pikachu si è evoluto in Raichu!");
+                    System.out.println(nome + " ha " + puntiSalute + " punti salute, " + puntiAttacco + " punti attacco e " + puntiDifesa + " punti difesa");
                     break;
                 case "Raichu":
                     System.out.println("Raichu non può evolversi più di così");
@@ -36,8 +37,8 @@ class Pikachu extends Pokemon implements IEvolvibile, IAttaccoSpeciale {
     @Override
     public void eseguiMossaSpeciale(Pokemon avversario) {
         int danno = puntiAttacco + 20 + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override

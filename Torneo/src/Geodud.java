@@ -9,8 +9,8 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
     @Override
     public void attacca(Pokemon avversario) {
         int danno = puntiAttacco + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override
@@ -18,7 +18,7 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
         corazzato = true;
         puntiDifesa += 30;
         puntiAttacco -= 15;
-        System.out.println(nome + " ha attivato la corazza! Ora subisce 10 danni in meno!");
+        System.out.println(nome + " ha attivato la corazza! Ha più difesa e meno attacco e subisce 10 danni in meno!");
     }
 
     @Override
@@ -31,6 +31,7 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
                     puntiDifesa += 5;
                     puntiSalute += 5;
                     System.out.println("Geodud si è evoluto in Graveler!");
+                    System.out.println(nome + " ha " + puntiSalute + " punti salute, " + puntiAttacco + " punti attacco e " + puntiDifesa + " punti difesa");
                     break;
                 case "Graveler":
                     nome = "Golem";
@@ -38,6 +39,7 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
                     puntiDifesa += 20;
                     puntiSalute += 20;
                     System.out.println("Graveler si è evoluto in Golem!");
+                    System.out.println(nome + " ha " + puntiSalute + " punti salute, " + puntiAttacco + " punti attacco e " + puntiDifesa + " punti difesa");
                     break;
                 case "Golem":
                     System.out.println("Golem non può evolversi più di così");
@@ -51,9 +53,8 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
     @Override
     public void eseguiMossaSpeciale(Pokemon avversario) {
         int danno = puntiAttacco + 20 + modificatoreDanno(avversario.tipo);
-        avversario.subisciDanno(danno);
-        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + danno + " danni a " + avversario.nome);
-    }
+        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
+        avversario.subisciDanno(danno);    }
 
     @Override
     public Map<Integer, String> opzioni() {
@@ -62,7 +63,7 @@ class Geodud extends Pokemon implements ICorazzato, IEvolvibile, IAttaccoSpecial
         opzioni.put(2, "2. Mossa Speciale");
         opzioni.put(4, "3. Attiva Corazza");
         if (vittorie >= 1) {
-            opzioni.put(5, "4.Evolvi");
+            opzioni.put(5, "4. Evolvi");
         }
         return opzioni;
     }

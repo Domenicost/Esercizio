@@ -10,8 +10,9 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
     @Override
     public void attacca(Pokemon avversario) {
         int danno = puntiAttacco + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
+
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override
@@ -25,6 +26,8 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
                     puntiDifesa += 5;
                     puntiSalute += 5;
                     System.out.println("Charmander si è evoluto in Charmilion!");
+                    System.out.println(nome + " ha " + puntiSalute + " punti salute, " + puntiAttacco
+                            + " punti attacco e " + puntiDifesa + " punti difesa");
                     break;
                 case "Charmilion":
                     nome = "Charizard";
@@ -32,6 +35,8 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
                     puntiDifesa += 20;
                     puntiSalute += 20;
                     System.out.println("Charmilion si è evoluto in Charizard!");
+                    System.out.println(nome + " ha " + puntiSalute + " punti salute, " + puntiAttacco
+                            + " punti attacco e " + puntiDifesa + " punti difesa");
                     break;
                 case "Charizard":
                     System.out.println("Charizard non può evolversi più di così");
@@ -44,8 +49,8 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
     @Override
     public void eseguiMossaSpeciale(Pokemon avversario) {
         int danno = puntiAttacco + 20 + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override
@@ -56,7 +61,7 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
 
     @Override
     public Map<Integer, String> opzioni() {
-        
+
         Map<Integer, String> opzioni = new HashMap<>();
         opzioni.put(1, "1. Attacca");
         opzioni.put(2, "2. Mossa Speciale");
@@ -68,11 +73,9 @@ public class Charmander extends Pokemon implements IEvolvibile, IAttaccoSpeciale
         return opzioni;
     }
 
-
     @Override
     public String toString() {
         return "Charmander";
     }
 
-    
 }

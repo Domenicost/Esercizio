@@ -31,12 +31,10 @@ public class App {
         squadraAllenatore2.addAll(listaPokemon);
         Allenatore a2 = new Allenatore("Brock", squadraAllenatore2);
 
-
         // Inizia Battaglia
         System.out.println("--------------------------------");
         System.out.println("INIZIO BATTAGLIA!");
         System.out.println("--------------------------------");
-
 
         // Seleziona (Random) Allenatore e Pokemon Iniziale
         int sceltaAllenatore = random.nextInt(2);
@@ -72,7 +70,8 @@ public class App {
             System.out.println("Tocca a " + pokemonInCampo.getNome());
             pokemonInCampo.getOpzioni();
             int sceltaCasuale = pokemonInCampo.scegliOpzione();
-            System.out.println("\n" + pokemonInCampo.getNome() + " sceglie: " + pokemonInCampo.opzioni().get(sceltaCasuale));
+            System.out.println(
+                    "\n" + pokemonInCampo.getNome() + " sceglie: " + pokemonInCampo.opzioni().get(sceltaCasuale));
 
             switch (sceltaCasuale) {
                 case 1:
@@ -129,11 +128,12 @@ public class App {
             System.out.println("\nOra tocca a " + pokemonAvversario.getNome());
             pokemonAvversario.getOpzioni();
             sceltaCasuale = pokemonAvversario.scegliOpzione();
-            System.out.println("\n" + allenatoreAvversario.getNome() + " sceglie: " + pokemonAvversario.opzioni().get(sceltaCasuale));
+            System.out.println("\n" + allenatoreAvversario.getNome() + " sceglie: "
+                    + pokemonAvversario.opzioni().get(sceltaCasuale));
 
             switch (sceltaCasuale) {
                 case 1:
-                pokemonAvversario.attacca(pokemonInCampo);
+                    pokemonAvversario.attacca(pokemonInCampo);
                     break;
                 case 2:
                     if (pokemonAvversario instanceof IAttaccoSpeciale) {
@@ -172,24 +172,23 @@ public class App {
             boolean allenatoreInizialeSconfitto = allenatoreIniziale.getSquadra().stream()
                     .allMatch(p -> p.getPuntiSalute() <= 0);
 
-            // Se il Pokemon attuale è KO, seleziona un nuovo Pokemon
-            if (pokemonInCampo.getPuntiSalute() == 0 && !allenatoreInizialeSconfitto) {
-                System.out.println(pokemonInCampo.getNome() + " è KO! Scelgo un nuovo Pokémon!");
-
-                Pokemon nuovoPokemon = allenatoreIniziale.getSquadra().stream().filter(p -> p.getPuntiSalute() > 0)
-                        .findFirst().get();
-                System.out.println(allenatoreIniziale.getNome() + " sceglie " + nuovoPokemon.getNome() + "!");
-                pokemonInCampo = nuovoPokemon;
-                pokemonAvversario.incrementaVittorie();
-            }
-
-
             // Visualizza statistiche dopo il turno
             System.out.println("\n--------------------------------");
             System.out.println("Statistiche Turno " + turno + "\n");
             pokemonInCampo.visualizzaStato();
             pokemonAvversario.visualizzaStato();
             turno++;
+
+            // Se il Pokemon attuale è KO, seleziona un nuovo Pokemon
+            if (pokemonInCampo.getPuntiSalute() == 0 && !allenatoreInizialeSconfitto) {
+                System.out.println(pokemonInCampo.getNome() + " è KO! Scelgo un nuovo Pokémon!");
+
+                Pokemon nuovoPokemon = allenatoreIniziale.getSquadra().stream().filter(p -> p.getPuntiSalute() > 0)
+                        .findFirst().get();
+                System.out.println(allenatoreIniziale.getNome() + " sceglie " + nuovoPokemon.getNome() + "!\n");
+                pokemonInCampo = nuovoPokemon;
+                pokemonAvversario.incrementaVittorie();
+            }
 
             // Stampa Vincitore
             if (allenatoreInizialeSconfitto || allenatoreAvversarioSconfitto) {

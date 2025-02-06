@@ -9,15 +9,15 @@ class Venusaur extends Pokemon implements IAttaccoSpeciale {
     @Override
     public void attacca(Pokemon avversario) {
         int danno = puntiAttacco + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override
     public void eseguiMossaSpeciale(Pokemon avversario) {
         int danno = puntiAttacco + 20 + modificatoreDanno(avversario.tipo);
+        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + (danno-puntiDifesa) + " danni a " + avversario.nome);
         avversario.subisciDanno(danno);
-        System.out.println(nome + " ha usato la mossa speciale e ha inflitto " + danno + " danni a " + avversario.nome);
     }
 
     @Override

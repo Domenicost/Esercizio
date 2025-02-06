@@ -43,30 +43,44 @@ public abstract class Pokemon {
         // Se il Pokémon è corazzato, il danno viene ridotto di 10
         if (corazzato) {
             danno -= 10;
+            System.out.println(nome + " è corazzato e subisce 10 danni in meno!");
+            disattivaCorazza();
         }
     
         // Calcolo del danno effettivo, tenendo conto della difesa
-        int dannoEffettivo = danno - puntiDifesa;
+        int dannoEffettivo = 0;
+        
+        dannoEffettivo = danno - puntiDifesa;
     
         // Se il Pokémon è volante, il danno effettivo è 0
         if (volante) {
             dannoEffettivo = 0;
+            System.out.println(nome + " sta volando e non subisce danni!");
+            volante=false;
         }
     
         // Se il danno effettivo è minore di 0, impostalo a 0 (non può essere negativo)
-        if (dannoEffettivo < 0) {
+        if (dannoEffettivo <= 0) {
             dannoEffettivo = 0;
         }
     
         // Se il danno effettivo è maggiore di 0, sottrarre dalla salute
-        if (dannoEffettivo > 0) {
+        if (dannoEffettivo >= 0) {
             puntiSalute -= dannoEffettivo;
+            System.out.println(nome + " subisce " + dannoEffettivo + " danni!");
         }
     
         // Se la salute è minore di 0, impostarla a 0
-        if (puntiSalute < 0) {
+        if (puntiSalute <= 0) {
             puntiSalute = 0;
         }
+    }
+
+    public void disattivaCorazza() {
+        corazzato = false;
+        puntiDifesa -= 30;
+        puntiAttacco += 15;
+        System.out.println(nome + " ha disattivato la corazza!");
     }
 
     public void visualizzaStato() {
@@ -77,7 +91,6 @@ public abstract class Pokemon {
         System.out.println("Punti Difesa: " + puntiDifesa);
         System.out.println("Vittorie: " + vittorie);
         System.out.println();
-
     }
 
     protected int modificatoreDanno(String tipoAvversario) {
@@ -85,38 +98,38 @@ public abstract class Pokemon {
 
             case "Fuoco":
                 if (tipoAvversario.equalsIgnoreCase("Erba")) 
-                    return 1;
+                    return 5;
                  else if (tipoAvversario.equalsIgnoreCase("Elettrico")) 
-                    return 1;
+                    return 0;
                 else if (tipoAvversario.equalsIgnoreCase("Roccia")) 
-                    return 2;
+                    return 0;
                 break;
 
             case "Erba":
                 if (tipoAvversario.equalsIgnoreCase("Fuoco")) 
-                    return 1;
-                 else if (tipoAvversario.equalsIgnoreCase("Erba")) 
-                    return 1;
+                    return 0;
+                 else if (tipoAvversario.equalsIgnoreCase("Roccia")) 
+                    return 0;
                 else if (tipoAvversario.equalsIgnoreCase("Elettrico")) 
-                    return 1;
+                    return 0;
                 break;
 
             case "Elettrico":
                 if (tipoAvversario.equalsIgnoreCase("Erba")) 
-                    return 1;
+                    return 5;
                 else if (tipoAvversario.equalsIgnoreCase("Fuoco")) 
-                    return 1;
+                    return 5;
                 else if (tipoAvversario.equalsIgnoreCase("Roccia")) 
-                    return 2;
+                    return 0;
                 break;
 
             case "Roccia":
                 if (tipoAvversario.equalsIgnoreCase("Erba")) 
-                    return 2;
+                    return 5;
                 else if (tipoAvversario.equalsIgnoreCase("Fuoco")) 
-                    return 2;
+                    return 0;
                 else if (tipoAvversario.equalsIgnoreCase("Elettrico")) 
-                    return 1;
+                    return 0;
                 break;
 
             default:
